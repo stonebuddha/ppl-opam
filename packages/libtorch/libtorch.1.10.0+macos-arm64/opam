@@ -1,0 +1,21 @@
+opam-version: "2.0"
+maintainer: "wayne.wangdi@yandex.com"
+install: [
+  [
+    "sh"
+    "-c"
+    "test -d %{lib}%/libtorch/lib/libtorch.dylib || ( unzip libtorch-macos.zip && mv -f libtorch %{lib}%/ )"
+  ]
+]
+depexts: [
+  ["libomp"] {os-distribution = "homebrew"}
+]
+synopsis: "LibTorch library package"
+description: """
+This is used by the torch package to trigger the install of the
+libtorch library."""
+extra-source "libtorch-macos.zip" {
+  src: "https://github.com/stonebuddha/ppl-opam/raw/main/packages/libtorch/libtorch.1.10.0+macos-arm64/files/libtorch-macos-1.10.0.zip"
+  checksum: "md5=d7152685584667ae97449720bc545676"
+}
+available: arch = "arm64" & os = "macos"
